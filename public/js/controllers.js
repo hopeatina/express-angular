@@ -8,7 +8,7 @@ function NavBarController($scope) {
     {
         // a direct window.location to overcome Angular intercepting your call!
         window.location = "/auth/twitter";
-    }
+    };
 
     $scope.onFacebookLogin = function () {
 
@@ -17,11 +17,24 @@ function NavBarController($scope) {
 
 function IndexCtrl($scope, $http) {
   $scope.posts = [];
+  $scope.getindicators = FilteredIndicators($scope);
 
   $http({method: 'GET', url: '/api/posts'}).
-    success(function(data, status, headers, config) {
+    then(function(data, status, headers, config) {
       $scope.posts = data.posts;
+        $scope.hiwdata = data.hiwdata;
+        $scope.gender = data.gender;
     });
+}
+function FilteredIndicators($scope){
+  var req = {
+    method: 'POST',
+    url: '/api/getindicators',
+    data: { locale: $scope.localeid, gender: $scope.genderid }
+  }
+  $http.(req).then(function(data, status, headers, config){
+    $scope.indicators = data;
+  })
 }
 
 function LoginCtrl($scope,$location)

@@ -61,14 +61,14 @@ everyauth.
  * https://dev.twitter.com/
  **/
 
-everyauth
+/*everyauth
     .twitter
     .consumerKey(process.env.TWITTER_CONSUMER_KEY)
     .consumerSecret(process.env.TWITTER_CONSUMER_SECRET)
     .findOrCreateUser( function (sess, accessToken, accessSecret, twitUser) {
         return usersByTwitId[twitUser.id] || (usersByTwitId[twitUser.id] = addUser('twitter', twitUser));
     })
-    .redirectPath('/');
+    .redirectPath('/');*/
 
 // add a user to the in memory store of users.  If you were looking to use a persistent store, this
 // would be the place to start

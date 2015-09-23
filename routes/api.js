@@ -17,11 +17,22 @@ var data = {
   ]
 };
 
+var hiw = require('hiw-api');
+var apiKey = "da45e11d07eb4ec8950afe79a0d76feb";
+var api = new hiw.API(apiKey);
+
 // GET
 
 exports.posts = function (req, res) {
   var posts = [], i, post, text;
-  for (i = 0; i < Math.min(data.posts.length, 5); i++) {
+  var sexes;
+    var indicatorDescriptions = null;
+    var timeframes = null;
+    var locales = null;
+    var ages = null;
+
+
+    for (i = 0; i < Math.min(data.posts.length, 5); i++) {
     post = data.posts[i];
     posts.push({
       id: i,
@@ -29,9 +40,22 @@ exports.posts = function (req, res) {
       text: post.text.substr(0, 50) + '...'
     });
   }
-  res.json({
-    posts: posts
-  });
+    hiw.Synchronizer.sync([
+        hiw.Locale.getAll(api, function (data)  {
+            locales = data;
+        }),
+        hiw.Sex.getAll(api, function (data) {
+            sexes = data;
+        })],function () {
+                res.json({
+                    posts: posts,
+                    hiwdata: locales,
+                    gender: sexes
+                });
+        console.log(sexes);
+
+        });
+
 };
 
 exports.post = function (req, res) {
