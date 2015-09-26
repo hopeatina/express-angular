@@ -40,21 +40,29 @@ exports.posts = function (req, res) {
       text: post.text.substr(0, 50) + '...'
     });
   }
-    hiw.Synchronizer.sync([
-        hiw.Locale.getAll(api, function (data)  {
-            locales = data;
-        }),
-        hiw.Sex.getAll(api, function (data) {
-            sexes = data;
-        })],function () {
-                res.json({
-                    posts: posts,
-                    hiwdata: locales,
-                    gender: sexes
-                });
-        console.log(sexes);
-
-        });
+    //hiw.Synchronizer.sync([
+    //    hiw.Locale.getAll(api, function (data)  {
+    //        locales = data;
+    //    }),
+    //    hiw.Sex.getAll(api, function (data) {
+    //        sexes = data;
+    //    })],function () {
+    //            res.json({
+    //                posts: posts,
+    //                hiwdata: locales,
+    //                gender: sexes
+    //            });
+    //
+    //
+    //    });
+  hiw.Locale.getAll(api, function (data)  {
+    locales = data;
+    res.json({
+      posts: posts,
+      hiwdata: locales,
+      gender: sexes
+    });
+  });
 
 };
 

@@ -17,16 +17,17 @@ function NavBarController($scope) {
 
 function IndexCtrl($scope, $http) {
   $scope.posts = [];
-  $scope.getindicators = FilteredIndicators($scope);
+  //$scope.getindicators = FilteredIndicators($scope);
 
   $http({method: 'GET', url: '/api/posts'}).
     then(function(data, status, headers, config) {
       $scope.posts = data.posts;
         $scope.hiwdata = data.hiwdata;
         $scope.gender = data.gender;
+        console.log($scope.gender + " It's not here.");
     });
 }
-function FilteredIndicators($scope){
+/*function FilteredIndicators($scope){
   var req = {
     method: 'POST',
     url: '/api/getindicators',
@@ -35,7 +36,7 @@ function FilteredIndicators($scope){
   $http.(req).then(function(data, status, headers, config){
     $scope.indicators = data;
   })
-}
+}*/
 
 function LoginCtrl($scope,$location)
 {
