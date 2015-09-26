@@ -26,11 +26,7 @@ var api = new hiw.API(apiKey);
 exports.posts = function (req, res) {
   var posts = [], i, post, text;
   var sexes;
-    var indicatorDescriptions = null;
-    var timeframes = null;
     var locales = null;
-    var ages = null;
-
 
     for (i = 0; i < Math.min(data.posts.length, 5); i++) {
     post = data.posts[i];
@@ -46,13 +42,12 @@ exports.posts = function (req, res) {
         }),
         hiw.Sex.getAll(api, function (data) {
             sexes = data;
-        })],function () {
+        })],function (data) {
                 res.json({
                     posts: posts,
                     hiwdata: locales,
                     gender: sexes
                 });
-        console.log(sexes);
 
         });
 

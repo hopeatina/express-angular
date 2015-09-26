@@ -1,11 +1,10 @@
 <div class="container">
     <div class="row">
-        <div class="span12">
+        <h1 class="span12">
             Yo this is the index does it really work
             {{posts.title}}
-        </div>
+        </h1>
     </div>
-    </br>
     <div class="row">
         Select your locale:
     <select name="repeatSelect" id="repeatSelect" ng-model="localeid" >
@@ -15,14 +14,11 @@
     </div>
     <div class="row">
         Select your Gender:
-        <select name="repeatSelect" id="repeatSelector" ng-model="mygenderid" >
+        <select name="repeatSelector" id="repeatSelector" ng-model="mygenderid" >
             <option ng-repeat="option in gender" value="{{option.id}}">{{option.name}}</option>
         </select>
         {{mygenderid}}
 
     </div>
-    <button ng-click="getindicators()" >Get My Indicators</button>
-</div>
-
-
+    <!--<button ng-click="getindicators()" >Get My Indicators</button>-->
 </div>
