@@ -7,7 +7,7 @@
 var data = {
   "posts": [
     {
-      "title": "Lorem ipsum",
+      "title": "This is proof that the api is working",
       "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
     },
     {
@@ -40,29 +40,29 @@ exports.posts = function (req, res) {
       text: post.text.substr(0, 50) + '...'
     });
   }
-    //hiw.Synchronizer.sync([
-    //    hiw.Locale.getAll(api, function (data)  {
-    //        locales = data;
-    //    }),
-    //    hiw.Sex.getAll(api, function (data) {
-    //        sexes = data;
-    //    })],function () {
-    //            res.json({
-    //                posts: posts,
-    //                hiwdata: locales,
-    //                gender: sexes
-    //            });
-    //
-    //
-    //    });
-  hiw.Locale.getAll(api, function (data)  {
-    locales = data;
-    res.json({
-      posts: posts,
-      hiwdata: locales,
-      gender: sexes
-    });
-  });
+    hiw.Synchronizer.sync([
+        hiw.Locale.getAll(api, function (data)  {
+            locales = data;
+        }),
+        hiw.Sex.getAll(api, function (data) {
+            sexes = data;
+        })],function () {
+        var answer = {
+          posts: posts,
+          hiwdata: locales,
+          gender: sexes
+        };
+                res.json(answer);
+
+
+        });
+  //hiw.Locale.getAll(api, function (data, response, error)  {
+  //  locales = data;
+  //  //console.log(locales + " There are no locales" + responses);
+  //  res.json({
+  //          hiwdata: locales,
+  //        });
+  //});
 
 };
 

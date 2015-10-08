@@ -19,12 +19,11 @@ function IndexCtrl($scope, $http) {
   $scope.posts = [];
   //$scope.getindicators = FilteredIndicators($scope);
 
-  $http({method: 'GET', url: '/api/posts'}).
-    then(function(data, status, headers, config) {
-      $scope.posts = data.posts;
-        $scope.hiwdata = data.hiwdata;
-        $scope.gender = data.gender;
-        console.log($scope.gender + " It's not here.");
+  $http.get('/api/posts').then(function(data, status, statusText) {
+     $scope.posts = data.data.posts;
+        $scope.locales = data.data.hiwdata;
+       $scope.gender = data.data.gender;
+        console.log($scope.posts.title + " It's not here. " + data.status + " " + Object.keys(data) );
     });
 }
 /*function FilteredIndicators($scope){

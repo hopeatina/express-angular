@@ -9,7 +9,7 @@
     <div class="row">
         Select your locale:
     <select name="repeatSelect" id="repeatSelect" ng-model="localeid" >
-        <option ng-repeat="locale in hiwdata" value="{{locale.id}}">{{locale.fullName}}</option>
+        <option ng-repeat="locale in locales" value="{{locale.id}}">{{locale.fullName}}</option>
     </select>
         {{localeid}}
     </div>
