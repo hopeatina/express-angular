@@ -25,6 +25,23 @@ function IndexCtrl($scope, $http) {
        $scope.gender = data.data.gender;
         console.log($scope.posts.title + " It's not here. " + data.status + " " + Object.keys(data) );
     });
+
+  $scope.refresh = function() {
+    var params = {localeid: $scope.localeid, genderid: $scope.genderid};
+    console.log(params.localeid);
+
+    $http.post('/api/getIndicators', params).then(function (data) {
+      $scope.indicators = data.data;
+    });
+  };
+  $scope.getDescrip = function() {
+    var params = {localeid: $scope.localeid, genderid: $scope.genderid};
+    console.log(params.localeid);
+
+    $http.post('/api/getIndicators', params).then(function (data) {
+      $scope.indicators = data.data;
+    });
+  };
 }
 /*function FilteredIndicators($scope){
   var req = {

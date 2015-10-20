@@ -124,6 +124,7 @@ app.get('/partials/:name', routes.partials);
 
 app.get('/api/posts', api.posts);
 app.get('/api/post/:id', api.post);
+app.post('/api/getIndicators', api.getIndicators);
 
 app.post('/api/addPost', api.addPost);
 app.post('/api/editPost', api.editPost);

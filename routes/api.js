@@ -23,6 +23,26 @@ var api = new hiw.API(apiKey);
 
 // GET
 
+exports.getIndicators = function(req,res) {
+  var indicators = null;
+  var indDescrip = null;
+  var filter = new hiw.Filter().addEqual(hiw.Indicator.Fields.localeID, parseInt(req.body.localeid));
+  hiw.Synchronizer.sync([
+    hiw.Indicator.filter(filter, api, function(data, response, error) {
+      indicators = data;
+      console.log("This is the locale " + indicators);
+    },1),
+    hiw.IndicatorDescription.filter(filter2, api, function(descrips) {
+      indDescrip = descrips;
+    })
+  ],function ()
+  {
+    res.json(indicators);
+    console.log(req.body.localeid);
+  } );
+
+};
+
 exports.posts = function (req, res) {
   var posts = [], i, post, text;
   var sexes;
@@ -43,6 +63,8 @@ exports.posts = function (req, res) {
     hiw.Synchronizer.sync([
         hiw.Locale.getAll(api, function (data)  {
             locales = data;
+          //console.log("This is the locale " + locales);
+
         }),
         hiw.Sex.getAll(api, function (data) {
             sexes = data;
@@ -56,14 +78,6 @@ exports.posts = function (req, res) {
 
 
         });
-  //hiw.Locale.getAll(api, function (data, response, error)  {
-  //  locales = data;
-  //  //console.log(locales + " There are no locales" + responses);
-  //  res.json({
-  //          hiwdata: locales,
-  //        });
-  //});
-
 };
 
 exports.post = function (req, res) {

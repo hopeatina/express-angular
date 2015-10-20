@@ -21,5 +21,41 @@
         {{mygenderid}}
 
     </div>
+   <button ng-click="refresh()" >Refresh Indicators </button>
+
+    <!--{{ indicators}}-->
+    <table class="table">
+        <tr>
+            <td>
+                Indicator Description ID
+            </td>
+            <td>
+                Denominator
+            </td>
+            <td>
+                Full Description
+            </td>
+        </tr>
+        <tr ng-repeat="indDescrip in indicators">
+            <td>
+                {{indDescrip.id}}/
+                {{indDescrip.indicatorDescriptionID}}
+            </td>
+            <td>
+                {{indDescrip.formattedValue}}/
+                {{indDescrip.denominator}}/
+                {{indDescrip.numerator}}/
+            </td>
+            <td>
+                {{getDescrip()}}
+                {{fullDescription}}
+                {{indDescrip.fullDescription}}
+            </td>
+        </tr>
+    </table>
+    <!--<uib-accordion-group heading="{{indDescrip.indicatorDescriptionID}}" ng-repeat="indDescrip in indicators">-->
+        <!--{{indDescrip.id}}-->
+    <!--</uib-accordion-group>-->
 <!--//    <button ng-click="getindicators()" >Get My Indicators</button>-->
 </div>
+
